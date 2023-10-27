@@ -1,7 +1,9 @@
 package net.azarquiel.nba.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -11,7 +13,7 @@ import kotlinx.coroutines.launch
 import net.azarquiel.nba.R
 import net.azarquiel.openweather.model.Equipo
 import net.azarquiel.openweather.model.Result
-import net.azarquiel.recyclerviewpajaros.adapter.CustomAdapter
+import net.azarquiel.recyclerviewNBA.adapter.CustomAdapter
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -43,5 +45,11 @@ class MainActivity : AppCompatActivity() {
         rv.adapter=adapter
         rv.layoutManager= LinearLayoutManager(this)
 
+    }
+    fun onclickteam(v: View){
+        val equipo = v.tag as Equipo
+        val intent= Intent(this, PlayersActivity::class.java)
+        intent.putExtra("equipo",equipo)
+        startActivity(intent)
     }
 }
